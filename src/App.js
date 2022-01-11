@@ -3,14 +3,12 @@ import "./App.css";
 import React, { useState } from "react";
 
 function UserQuery(props) {
-  const { setZipcodeFromApp, setApiList, zipcode } = props;
-
-  // const setZipcode = props.setZipcodeFromApp; same as previous
+  const {setApiList} = props;
+ 
   function onChange(event) {
     if (event.target.value.length === 5) {
       //zipcodes can only be 5 digits
-      setZipcodeFromApp(event.target.value);
-      fetch(`http://ctp-zip-api.herokuapp.com/zip/${zipcode}`).then(
+      fetch(`http://ctp-zip-api.herokuapp.com/zip/${event.target.value}`).then(
         (response) => {
           response
             .json()
@@ -38,7 +36,9 @@ function OutputContainer(props) {
       <ul>
         {apiList.map((i) => (
           <li>
-            <dt>{i.LocationText}, {i.Zipcode}</dt>
+            <dt>
+              {i.LocationText}, {i.Zipcode}
+            </dt>
             <dd>Population Est. {i.EstimatedPopulation}</dd>
             <dd>Latitude: {i.Lat}</dd>
             <dd>Longitude: {i.Long}</dd>
@@ -52,15 +52,12 @@ function OutputContainer(props) {
 
 function App() {
   const [apiList, setApiList] = useState([]);
-  const [zipcode, setZipcode] = useState();
   return (
     <div className="App">
       <header className="App-header">
         <UserQuery
-          placeholder="hello"
-          setZipcodeFromApp={setZipcode}
+          placeholder="Enter ZIP Code"
           setApiList={setApiList}
-          zipcode={zipcode}
         />
 
         <OutputContainer apiList={apiList} />
