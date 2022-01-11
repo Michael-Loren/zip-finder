@@ -23,10 +23,13 @@ border-width: 2px;
 }
 li{
   border-style:solid;
+  width: 30rem;
   border-color: black;
   margin-bottom: 2px;
   background-color: white;
-  color: black
+  color: black;
+  text-align: left;
+  font-size: smaller;
 }
 
 
