@@ -3,8 +3,8 @@ import "./App.css";
 import React, { useState } from "react";
 
 function UserQuery(props) {
-  const {setApiList} = props;
- 
+  const { setApiList } = props;
+
   function onChange(event) {
     if (event.target.value.length === 5) {
       //zipcodes can only be 5 digits
@@ -55,10 +55,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <UserQuery
-          placeholder="Enter ZIP Code"
-          setApiList={setApiList}
-        />
+        <UserQuery placeholder="Enter ZIP Code" setApiList={setApiList} />
 
         <OutputContainer apiList={apiList} />
       </header>
