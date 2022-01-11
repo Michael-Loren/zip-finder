@@ -1,5 +1,5 @@
 import "./App.css";
-import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+
 
 import React, { useState } from "react";
 
@@ -18,7 +18,6 @@ function UserQuery(props) {
             .then((data) => {
               console.log(data);
               setApiList(data);
-              //do something with data here
             })
             .catch((e) => console.log(e));
         }
@@ -43,7 +42,11 @@ function OutputContainer(props) {
       <ul>
         {apiList.map((i) => (
           <li>
-
+            <dt>{i.LocationText}</dt>
+            <dd>Population Est. {i.EstimatedPopulation}</dd>
+            <dd>Latitude: {i.Lat}</dd>
+            <dd>Longitude: {i.Long}</dd>
+            <br />
           </li>
         ))}
       </ul>
