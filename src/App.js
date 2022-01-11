@@ -3,7 +3,7 @@ import "./App.css";
 import React, { useState } from "react";
 
 function UserQuery(props) {
-  const { setApiList } = props;
+  const { setZipList } = props;
 
   function onChange(event) {
     if (event.target.value.length === 5) {
@@ -13,7 +13,7 @@ function UserQuery(props) {
           response
             .json()
             .then((data) => {
-              setApiList(data);
+              setZipList(data);
             })
             .catch((e) => console.log(e));
         }
@@ -30,11 +30,11 @@ function UserQuery(props) {
 }
 
 function OutputContainer(props) {
-  const { apiList } = props;
+  const { zipList } = props;
   return (
     <section>
       <ul>
-        {apiList.map((i) => (
+        {zipList.map((i) => (
           <li>
             <dt>
               {i.LocationText}, {i.Zipcode}
@@ -51,13 +51,22 @@ function OutputContainer(props) {
 }
 
 function App() {
-  const [apiList, setApiList] = useState([]);
+  const [zipList, setZipList] = useState([]);
+  
   return (
     <div className="App">
       <header className="App-header">
-        <UserQuery placeholder="Enter ZIP Code" setApiList={setApiList} />
+        <section id="left">
+          <UserQuery placeholder="Enter ZIP Code" setZipList={setZipList} />
 
-        <OutputContainer apiList={apiList} />
+          <OutputContainer zipList={zipList} />
+        </section>
+
+        <section id="right">
+          <UserQuery placeholder="Enter ZIP Code" setZipList={setZipList} />
+
+          <OutputContainer zipList={zipList} />
+        </section>
       </header>
     </div>
   );
