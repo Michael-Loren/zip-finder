@@ -30,11 +30,11 @@ function UserQuery(props) {
 }
 
 function OutputContainer(props) {
-  const { zipList } = props;
+  const { apiList } = props;
   return (
     <section>
       <ul>
-        {zipList.map((i) => (
+        {apiList.map((i) => (
           <li>
             <dt>
               {i.LocationText}, {i.Zipcode}
@@ -52,20 +52,20 @@ function OutputContainer(props) {
 
 function App() {
   const [zipList, setZipList] = useState([]);
-  
+  const [cityList, setCityList] = useState([]);
   return (
     <div className="App">
       <header className="App-header">
         <section id="left">
           <UserQuery placeholder="Enter ZIP Code" setZipList={setZipList} />
 
-          <OutputContainer zipList={zipList} />
+          <OutputContainer apiList={zipList} />
         </section>
 
         <section id="right">
-          <UserQuery placeholder="Enter ZIP Code" setZipList={setZipList} />
-
-          <OutputContainer zipList={zipList} />
+          <UserQuery placeholder="Enter ZIP Code" setZipList={setCityList} />
+          
+          <OutputContainer apiList={cityList} />
         </section>
       </header>
     </div>
